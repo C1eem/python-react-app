@@ -6,9 +6,10 @@ from src.core.database import Base, TimestampMixin, intpk, str_100
 
 
 class UserRole(enum.Enum):
-    parent = "parent"
-    tutor = "tutor"
     admin = "admin"
+    parent = "parent"
+    student = "student"
+    tutor = "tutor"
 
 
 class UserORM(TimestampMixin, Base):
