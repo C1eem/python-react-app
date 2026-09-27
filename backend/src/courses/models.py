@@ -18,7 +18,7 @@ class LessonType(enum.Enum):
     assignment = "assignment"
 
 
-class CourseORM(Base):
+class CourseORM(TimestampMixin, Base):
     __tablename__ = "courses"
 
     id: Mapped[intpk]
@@ -32,7 +32,7 @@ class CourseORM(Base):
     status: Mapped[CourseStatus] = mapped_column(default=CourseStatus.draft)
 
 
-class ModuleORM(Base):
+class ModuleORM(TimestampMixin, Base):
     __tablename__ = "modules"
 
     id: Mapped[intpk]
@@ -44,7 +44,7 @@ class ModuleORM(Base):
     position: Mapped[int] = mapped_column(default=0)
 
 
-class LessonORM(Base):
+class LessonORM(TimestampMixin, Base):
     __tablename__ = "lessons"
 
     id: Mapped[intpk]

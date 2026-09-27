@@ -18,7 +18,7 @@ class QuestionType(enum.Enum):
     text = "text"
 
 
-class TaskORM(Base):
+class TaskORM(TimestampMixin, Base):
     __tablename__ = "tasks"
 
     id: Mapped[intpk]
@@ -34,7 +34,7 @@ class TaskORM(Base):
     position: Mapped[int] = mapped_column(default=0)
 
 
-class QuestoinORM(Base):
+class QuestoinORM(TimestampMixin, Base):
     __tablename__ = "questions"
 
     id: Mapped[intpk]

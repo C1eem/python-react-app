@@ -13,7 +13,7 @@ class SubmissionStatus(enum.Enum):
     returned = "returned"
 
 
-class SubmissionsORM(Base):
+class SubmissionsORM(TimestampMixin, Base):
     __tablename__ = "submissions"
 
     id: Mapped[intpk]

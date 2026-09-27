@@ -1,10 +1,18 @@
 from datetime import datetime
 from typing import Annotated
 
-from sqlalchemy import DateTime, String, func
+from sqlalchemy import DateTime, MetaData, String, func
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 from src.core.config import settings
+
+convention = {
+    "ix": "ix_%(column_0_label)s",
+    "uq": "uq_%(table_name)s_%(column_0_name)s",
+    "ck": "ck_%(table_name)s_%(constraint_name)s",
+    "fk": "fk_%(table_name)s_%(column_0_name)s_%(referred_table_name)s",
+    "pk": "pk_%(table_name)s",
+}
 
 intpk = Annotated[int, mapped_column(primary_key=True)]
 str_100 = Annotated[str, 100]
@@ -20,6 +28,7 @@ async def get_db():
 
 
 class Base(DeclarativeBase):
+    metadata = MetaData(naming_convention=convention)
     type_annotated_map = {str_100: String(100)}
 
     repr_cols_num = 3
