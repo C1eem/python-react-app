@@ -1,1 +1,1 @@
-from src.submissions.models import SumbissionsORM
+from src.submissions.models import SubmissionsORM
