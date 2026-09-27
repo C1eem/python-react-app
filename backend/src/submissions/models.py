@@ -34,14 +34,16 @@ class SubmissionsORM(TimestampMixin, Base):
     submitted_at: Mapped[datetime | None]
     graded_at: Mapped[datetime | None]
 
-    __table_args__ = UniqueConstraint("task_id", "student_id", name="uq_task_student")
+    __table_args__ = (
+        UniqueConstraint("task_id", "student_id", name="uq_task_student"),
+    )
 
 
 class SubmissionAnswerORM(Base):
     __tablename__ = "submission_answers"
 
     id: Mapped[intpk]
-    sumbission_id: Mapped[int] = mapped_column(
+    submission_id: Mapped[int] = mapped_column(
         ForeignKey("submissions.id", ondelete="CASCADE"),
         index=True,
     )
@@ -51,8 +53,8 @@ class SubmissionAnswerORM(Base):
     )
     answer_text: Mapped[str | None]
 
-    __table_args__ = UniqueConstraint(
-        "submission_id", "question_id", name="uq_submission_question"
+    __table_args__ = (
+        UniqueConstraint("submission_id", "question_id", name="uq_submission_question"),
     )
 
 
@@ -61,11 +63,11 @@ class SubmissionAnswerOption(Base):
 
     submission_answer_id: Mapped[int] = mapped_column(
         ForeignKey("submission_answers.id", ondelete="CASCADE"),
-        index=True,
+        primary_key=True,
     )
     option_id: Mapped[int] = mapped_column(
         ForeignKey("question_options.id", ondelete="CASCADE"),
-        index=True,
+        primary_key=True,
     )
 
 

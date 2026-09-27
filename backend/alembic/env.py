@@ -21,12 +21,16 @@ if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
 from src.core.database import Base
+from src.courses.models import CourseORM
+from src.enrollments.models import EnrollmentORM
+from src.submissions.models import SubmissionsORM
+from src.tasks.models import TaskORM
 
 # add your model's MetaData object here
 # for 'autogenerate' support
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
-from src.users.models import UserORM, UserRole
+from src.users.models import ParentStudentORM, UserORM, UserRole
 
 target_metadata = Base.metadata
 

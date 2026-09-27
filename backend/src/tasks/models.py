@@ -23,7 +23,7 @@ class TaskORM(TimestampMixin, Base):
 
     id: Mapped[intpk]
     lesson_id: Mapped[int] = mapped_column(
-        ForeignKey("lesson.id", ondelete="CASCADE"),
+        ForeignKey("lessons.id", ondelete="CASCADE"),
         index=True,
     )
     type: Mapped[TaskType]

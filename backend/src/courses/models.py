@@ -37,7 +37,7 @@ class ModuleORM(TimestampMixin, Base):
 
     id: Mapped[intpk]
     course_id: Mapped[int] = mapped_column(
-        ForeignKey("course.id", ondelete="CASCADE"),
+        ForeignKey("courses.id", ondelete="CASCADE"),
         index=True,
     )
     title: Mapped[str_100]
@@ -73,7 +73,7 @@ class LessonTextORM(Base):
     __tablename__ = "lesson_texts"
 
     lesson_id: Mapped[int] = mapped_column(
-        ForeignKey("lesson.id", ondelete="CASCADE"),
+        ForeignKey("lessons.id", ondelete="CASCADE"),
         primary_key=True,
     )
     content: Mapped[str]
