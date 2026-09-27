@@ -26,7 +26,7 @@ class UserORM(TimestampMixin, Base):
 
 
 class ParentStudentORM(Base):
-    __tablename__ = "parent_student"
+    __tablename__ = "parent_students"
 
     parent_id: Mapped[int] = mapped_column(
         ForeignKey("users.id"),
