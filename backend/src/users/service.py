@@ -7,7 +7,7 @@ from src.users.models import UserORM
 from src.users.schemas import UserAddDTO, UserCreateInDB
 
 
-async def _get_user_by_email(email: str, db: AsyncSession):
+async def get_user_by_email(email: str, db: AsyncSession):
     res = await db.execute(select(UserORM).where(UserORM.email == email))
     return res.scalar_one_or_none()
 
@@ -19,7 +19,7 @@ async def get_user_by_id(id: int, db: AsyncSession):
 
 async def create_user_service(user_data: UserAddDTO, db: AsyncSession):
     hashed_password = await run_in_threadpool(get_password_hash, user_data.password)
-    if await _get_user_by_email(user_data.email, db):
+    if await get_user_by_email(user_data.email, db):
         raise HTTPException(status_code=400, detail="Email already registered")
     user_in_db = UserCreateInDB(
         email=user_data.email,
