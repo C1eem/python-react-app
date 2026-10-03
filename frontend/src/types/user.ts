@@ -3,9 +3,9 @@ export type UserRole = "parent" | "student" | "teacher" | "admin"
 export type UserFormValues = {
     email: string
     password: string
-    firstName: string
-    lastName: string
-    middleName: string | null
+    first_name: string
+    last_name: string
+    middle_name: string | null
 }
 
 export type User = {
